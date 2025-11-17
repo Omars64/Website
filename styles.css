@@ -1,0 +1,485 @@
+/* ------------------------------
+   Theme tokens
+------------------------------ */
+
+:root {
+  --accent: #38bdf8;
+  --accent-soft: rgba(56, 189, 248, 0.16);
+  --accent-strong: #0ea5e9;
+
+  --radius-lg: 24px;
+  --radius-pill: 999px;
+
+  --transition-fast: 180ms ease-out;
+  --transition-med: 220ms ease;
+}
+
+[data-theme="light"] {
+  --bg-page: #e5f0ff;
+  --bg-card: rgba(255, 255, 255, 0.92);
+  --bg-card-soft: rgba(255, 255, 255, 0.78);
+
+  --text-main: #0f172a;
+  --text-muted: #6b7280;
+
+  --nav-bg: rgba(255, 255, 255, 0.92);
+  --border-subtle: rgba(148, 163, 184, 0.45);
+  --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.12);
+
+  --bg-pattern:
+    radial-gradient(circle at top left, rgba(59, 130, 246, 0.18), transparent 55%),
+    radial-gradient(circle at bottom right, rgba(56, 189, 248, 0.2), transparent 60%),
+    #e5f0ff;
+}
+
+[data-theme="dark"] {
+  --bg-page: #020617;
+  --bg-card: rgba(15, 23, 42, 0.94);
+  --bg-card-soft: rgba(15, 23, 42, 0.86);
+
+  --text-main: #e5e7eb;
+  --text-muted: #9ca3af;
+
+  --nav-bg: rgba(15, 23, 42, 0.96);
+  --border-subtle: rgba(51, 65, 85, 0.9);
+  --shadow-soft: 0 18px 45px rgba(0, 0, 0, 0.65);
+
+  --bg-pattern:
+    radial-gradient(circle at top left, rgba(56, 189, 248, 0.22), transparent 55%),
+    radial-gradient(circle at bottom right, rgba(129, 140, 248, 0.25), transparent 60%),
+    #020617;
+}
+
+/* ------------------------------
+   Base reset & typography
+------------------------------ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0 1.5rem 3rem;
+  min-height: 100vh;
+  font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: var(--bg-pattern);
+  color: var(--text-main);
+  line-height: 1.6;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--accent-strong);
+}
+
+/* ------------------------------
+   Navigation (sticky + glass)
+------------------------------ */
+
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: var(--nav-bg);
+  backdrop-filter: blur(18px);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+nav ul {
+  list-style: none;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0.6rem 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+nav li {
+  display: flex;
+  align-items: center;
+}
+
+nav a {
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.4rem 0.9rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid transparent;
+  transition:
+    background var(--transition-fast),
+    border-color var(--transition-fast),
+    color var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+nav a:hover {
+  background: var(--accent-soft);
+  border-color: rgba(56, 189, 248, 0.4);
+  color: var(--accent-strong);
+  transform: translateY(-1px);
+}
+
+/* Theme toggle pill */
+
+#theme-toggle {
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-card-soft);
+  padding: 0.35rem 0.75rem;
+  font-size: 1rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 0 1px rgba(15, 23, 42, 0.03);
+  transition:
+    background var(--transition-fast),
+    box-shadow var(--transition-fast),
+    transform var(--transition-fast),
+    border-color var(--transition-fast);
+}
+
+#theme-toggle:hover {
+  background: var(--accent-soft);
+  border-color: rgba(56, 189, 248, 0.65);
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.18);
+  transform: translateY(-1px);
+}
+
+/* ------------------------------
+   Layout shells (cards)
+------------------------------ */
+
+header,
+.container,
+footer {
+  max-width: 960px;
+  margin: 2.5rem auto 0;
+  padding: 2.3rem 2rem;
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-soft);
+  backdrop-filter: blur(22px);
+}
+
+header {
+  margin-top: 3rem;
+  text-align: center;
+  padding-top: 2.7rem;
+  padding-bottom: 2.7rem;
+}
+
+.container + .container {
+  margin-top: 2rem;
+}
+
+section.container {
+  margin-top: 2rem;
+}
+
+/* ------------------------------
+   Header / hero
+------------------------------ */
+
+.profile-img {
+  width: 112px;
+  height: 112px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0 auto 1.25rem;
+  border: 3px solid rgba(56, 189, 248, 0.6);
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.35);
+}
+
+header h1 {
+  font-size: clamp(2rem, 2.4vw + 1.5rem, 2.6rem);
+  margin: 0 0 0.4rem;
+}
+
+header p {
+  margin: 0.2rem 0 0;
+  color: var(--text-muted);
+  font-weight: 400;
+  font-size: 0.98rem;
+}
+
+/* ------------------------------
+   Section headings
+------------------------------ */
+
+.container h2 {
+  font-size: 1.25rem;
+  margin-top: 0;
+  margin-bottom: 1.25rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.container h2::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 2px;
+  margin-top: 0.6rem;
+  border-radius: 999px;
+  background: linear-gradient(
+    90deg,
+    rgba(56, 189, 248, 0.9),
+    rgba(129, 140, 248, 0.9)
+  );
+}
+
+/* ------------------------------
+   Summary
+------------------------------ */
+
+.summary-description p {
+  margin: 0.35rem 0;
+  color: var(--text-muted);
+}
+
+/* ------------------------------
+   Experience cards
+------------------------------ */
+
+.job-description {
+  margin-top: 1.5rem;
+  padding: 1.5rem 1.4rem;
+  border-radius: 18px;
+  background: var(--bg-card-soft);
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  column-gap: 1.25rem;
+  row-gap: 0.5rem;
+  align-items: flex-start;
+}
+
+.job-logo {
+  width: 52px;
+  height: 52px;
+  border-radius: 18px;
+  object-fit: contain;
+  background: rgba(15, 23, 42, 0.03);
+  padding: 0.4rem;
+  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.15);
+}
+
+.job-description h3 {
+  margin: 0;
+  font-size: 1.05rem;
+}
+
+.job-description p {
+  margin: 0.35rem 0 0;
+  color: var(--text-muted);
+  grid-column: 2 / -1;
+}
+
+.job-description ul {
+  list-style: none;
+  margin: 0.8rem 0 0;
+  padding: 0;
+  grid-column: 1 / -1;
+}
+
+.job-description li {
+  position: relative;
+  padding-left: 1.3rem;
+  margin-bottom: 0.4rem;
+  font-size: 0.95rem;
+}
+
+.job-description li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.7em;
+  width: 0.4rem;
+  height: 0.4rem;
+  border-radius: 999px;
+  background: var(--accent);
+  box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.18);
+}
+
+/* ------------------------------
+   Education timeline-style
+------------------------------ */
+
+.education + .education {
+  margin-top: 1rem;
+}
+
+.education-content {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  padding: 1.1rem 1rem;
+  border-radius: 16px;
+  background: var(--bg-card-soft);
+  border: 1px solid rgba(148, 163, 184, 0.3);
+}
+
+.education-logo {
+  width: 50px;
+  height: 50px;
+  border-radius: 14px;
+  object-fit: contain;
+  background: rgba(15, 23, 42, 0.03);
+  padding: 0.35rem;
+}
+
+.education-text h3 {
+  margin: 0 0 0.25rem;
+  font-size: 1rem;
+}
+
+.education-text p {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+/* ------------------------------
+   Skills / languages / certs
+------------------------------ */
+
+#skills > h2 {
+  margin-top: 1.5rem;
+}
+
+#skills > h2:first-of-type {
+  margin-top: 0;
+}
+
+#skills > ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0 0 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+#skills > ul li {
+  padding: 0.35rem 0.9rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid rgba(148, 163, 184, 0.45);
+  background: var(--bg-card-soft);
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+/* ------------------------------
+   Contact
+------------------------------ */
+
+#contact p {
+  margin: 0.25rem 0;
+}
+
+#contact a {
+  font-weight: 500;
+  position: relative;
+}
+
+#contact a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -0.1rem;
+  width: 100%;
+  height: 1px;
+  background: rgba(56, 189, 248, 0.7);
+  opacity: 0;
+  transform: scaleX(0.9);
+  transform-origin: center;
+  transition:
+    opacity var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+#contact a:hover::after {
+  opacity: 1;
+  transform: scaleX(1);
+}
+
+/* ------------------------------
+   Footer
+------------------------------ */
+
+footer {
+  margin-top: 2rem;
+  padding-top: 1.4rem;
+  padding-bottom: 1.4rem;
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  background: transparent;
+  box-shadow: none;
+  border-radius: 0;
+  border: none;
+}
+
+footer p {
+  margin: 0.1rem 0;
+}
+
+/* ------------------------------
+   Responsive tweaks
+------------------------------ */
+
+@media (max-width: 768px) {
+  body {
+    padding: 0 1rem 2.5rem;
+  }
+
+  header,
+  .container {
+    padding: 1.8rem 1.4rem;
+    margin-top: 1.8rem;
+  }
+
+  header {
+    margin-top: 2.4rem;
+  }
+
+  .job-description {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .job-logo {
+    margin-bottom: 0.6rem;
+  }
+
+  .education-content {
+    flex-direction: column;
+  }
+
+  nav ul {
+    justify-content: center;
+  }
+}
