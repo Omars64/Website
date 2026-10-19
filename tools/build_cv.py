@@ -80,9 +80,6 @@ line("Python · Selenium · Blue Prism · RPA · Flowable · Liferay integration
 doc.add_heading("Professional Experience", 1)
 doc.add_heading("Junior Software Engineer | Digital Processing Systems Kuwait", 2)
 line("August 2023 – Present  |  Salmiya, Kuwait")
-projects_label = line("Selected projects")
-projects_label.paragraph_format.left_indent = Inches(0.18)
-projects_label.runs[0].font.bold = True
 doc.add_heading("Department of Legal Advice and Legislation (FATWA) | Dec 2023–Aug 2025", 3)
 bullet("Developed business automation using Blue Prism and Python with Selenium.", project=True)
 bullet("Managed a major part of the archiving operation, including its databases and systems.", project=True)
